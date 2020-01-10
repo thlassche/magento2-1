@@ -14,8 +14,8 @@ class CsrfValidatorSkip
         RequestInterface $request,
         ActionInterface $action
     ) {
-        if ($request->getModuleName() == 'mollie') {
-            return;
+        if ($request->getModuleName() == 'mollie' || strpos($request->getPathInfo(), 'mollie') !== false) {
+            return true;
         }
 
         $proceed($request, $action);
